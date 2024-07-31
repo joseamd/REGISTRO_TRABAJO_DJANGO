@@ -1,0 +1,30 @@
+<!-- registros/templates/registros/crear_registro.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Registro de Trabajo</title>
+</head>
+<body>
+    <h2>Crear Registro de Trabajo</h2>
+    <nav>
+        <ul>
+            <li><a href="{% url 'listar_registros' %}">Mis Registros</a></li>
+            <li><a href="{% url 'crear_registro' %}">Nuevo Registro</a></li>
+            <li><form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesión</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Registro</button>
+    </form>
+    <a href="{% url 'listar_registros' %}">Volver a la lista de registros</a>
+       
+</body>
+</html>

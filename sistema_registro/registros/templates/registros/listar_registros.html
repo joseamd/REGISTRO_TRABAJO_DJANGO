@@ -1,0 +1,32 @@
+<!-- registros/templates/registros/listar_registros.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Registros de Trabajo</title>
+</head>
+<body>
+    <h2>Lista de Registros de Trabajo</h2>
+    <nav>
+        <ul>
+            <li><a href="{% url 'listar_registros' %}">Mis Registros</a></li>
+            <li><a href="{% url 'crear_registro' %}">Nuevo Registro</a></li>
+            <li><form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Cerrar Sesión</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <ul>
+        {% for registro in registros %}
+            <li>{{ registro.descripcion }} - {{ registro.horas_trabajadas }} horas - {{ registro.fecha }} - ${{ registro.monto_pago }}</li>
+        {% empty %}
+            <li>No hay registros de trabajo.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'crear_registro' %}">Crear nuevo registro</a>
+</body>
+</html>
+
